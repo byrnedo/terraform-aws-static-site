@@ -1,5 +1,7 @@
 # Terraform AWS Static Site Module
 
+![aws](aws.png)
+
 An opinionated module to easily create an S3 hosted static site, served via Cloudfront with TLS and optionally attach lambdas to certain paths.
 
 Strong Opinions:
