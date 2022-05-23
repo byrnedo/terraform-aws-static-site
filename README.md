@@ -1,3 +1,11 @@
 # Terraform AWS Static Site Module
 
-A s3 hosted static site, served via Cloudfront with TLS and optionally attach lambdas to certain paths.
+An opinionated module to easily create an S3 hosted static site, served via Cloudfront with TLS and optionally attach lambdas to certain paths.
+
+Strong Opinions:
+
+- The created bucket name is the domain name.
+- You want an IAM user with permissions to deploy to the bucket and invalidate the cache.
+- You don't have any georestrictions.
+- With `vars.single_page_app` set to true, you want all requests served from index.html
+
