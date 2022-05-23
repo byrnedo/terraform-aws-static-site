@@ -11,6 +11,7 @@ module "aws-static-site" {
   aliases = var.aliases
   zone_id = var.zone_id
   path_lambda_arns = var.lambda_arns
+  single_page_app = var.single_page_app
 }
 
 variable "aws_profile" {
@@ -38,4 +39,8 @@ variable "zone_id" {
 variable "lambda_arns" {
   description = "Map of path patterns to lambda ARNs"
   type = map(string)
+}
+
+variable "single_page_app" {
+  description = "Set to true to serve all requests to index.html"
 }
