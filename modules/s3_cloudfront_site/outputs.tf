@@ -11,6 +11,7 @@ output aws_access_key_id {
 }
 
 output aws_secret_access_key {
+  sensitive = true
   value = aws_iam_access_key.deploy_key.secret
 }
 
