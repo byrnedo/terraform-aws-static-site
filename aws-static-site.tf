@@ -1,8 +1,3 @@
-provider "aws" {
-  region  = var.aws_region
-  profile = var.aws_profile
-}
-
 
 module "aws-static-site" {
   source           = "./modules/s3_cloudfront_site"
@@ -14,16 +9,6 @@ module "aws-static-site" {
   single_page_app  = var.single_page_app
 }
 
-variable "aws_profile" {
-  description = "The AWS-CLI profile for the account to create resources in."
-  type        = string
-  default     = null
-}
-variable "aws_region" {
-  description = "The AWS region to create resources in."
-  type        = string
-  default     = null
-}
 
 variable "certificate_arn" {
   description = "The ARN of the CloudFront certificate to use."
