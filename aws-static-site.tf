@@ -43,4 +43,5 @@ variable "enabled" {
 
 variable "region" {
   description = "The region to host the bucket"
+  type = string
 }
