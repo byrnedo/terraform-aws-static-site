@@ -1,4 +1,3 @@
-
 module "aws-static-site" {
   source           = "./modules/s3_cloudfront_site"
   certificate_arn  = var.certificate_arn
@@ -7,6 +6,7 @@ module "aws-static-site" {
   zone_id          = var.zone_id
   path_lambda_arns = var.lambda_arns
   single_page_app  = var.single_page_app
+  enabled          = var.enabled
 }
 
 
@@ -34,4 +34,9 @@ variable "lambda_arns" {
 variable "single_page_app" {
   description = "Set to true to serve all requests to index.html"
   default     = false
+}
+
+variable "enabled" {
+  description = "Enable the cloudfront distribution"
+  default     = true
 }
