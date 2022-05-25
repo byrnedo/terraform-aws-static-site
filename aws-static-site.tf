@@ -7,6 +7,7 @@ module "aws-static-site" {
   path_lambda_arns = var.lambda_arns
   single_page_app  = var.single_page_app
   enabled          = var.enabled
+  region           = var.region
 }
 
 
@@ -43,5 +44,5 @@ variable "enabled" {
 
 variable "region" {
   description = "The region to host the bucket"
-  type = string
+  type        = string
 }
