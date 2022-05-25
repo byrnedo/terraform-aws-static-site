@@ -40,3 +40,7 @@ variable "enabled" {
   description = "Enable the cloudfront distribution"
   default     = true
 }
+
+variable "region" {
+  description = "The region to host the bucket"
+}

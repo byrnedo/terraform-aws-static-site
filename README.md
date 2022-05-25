@@ -10,14 +10,22 @@ module "site" {
   version = "0.1.3"
   domain = "www.foo.com"
   aliases = [ "foo.com"]
+  region = "eu-west-1"
   zone_id = "some-zone-id-you-have"
   certificate_arn = "some-certificate-arn-you-have"
 }
 ```
 
-Strong Opinions:
+## Resources created:
 
-- You want TLS (https)
+- S3 bucket
+- Cloudfront distribution
+- IAM user
+- Route53 records for domain and aliases
+
+## Strong Opinions:
+
+- You want TLS (https with auto redirect from http)
 - The created bucket name is the domain name.
 - You want an IAM user with permissions to deploy to the bucket and invalidate the cache.
 - You don't have any georestrictions.

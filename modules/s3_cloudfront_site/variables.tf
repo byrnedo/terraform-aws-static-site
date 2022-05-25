@@ -31,3 +31,7 @@ variable "certificate_arn" {
   type = string
 }
 variable "zone_id" {}
+
+variable "region" {
+  type = string
+}
