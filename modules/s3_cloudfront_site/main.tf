@@ -1,4 +1,3 @@
-
 resource "aws_s3_bucket" "bucket" {
   bucket        = var.domain
   region        = var.region
@@ -13,7 +12,7 @@ resource "aws_s3_bucket" "bucket" {
 
 data "template_file" "bucket_policy_tmpl" {
   template = file("${path.module}/s3_public_policy.tpl")
-  vars = {
+  vars     = {
     bucket = aws_s3_bucket.bucket.bucket
   }
 }
@@ -25,16 +24,16 @@ resource "aws_s3_bucket_policy" "policy" {
 
 
 module "cloudfront" {
-  source = "../cloudfront_dist"
-  comment = "For ${var.domain} app"
+  source           = "../cloudfront_dist"
+  comment          = "For ${var.domain} app"
   website_endpoint = aws_s3_bucket.bucket.website_endpoint
   enabled          = var.enabled
   aliases          = concat([var.domain], var.aliases)
   certificate_arn  = var.certificate_arn
-  single_page_app = var.single_page_app
+  single_page_app  = var.single_page_app
   path_lambda_arns = var.path_lambda_arns
-  lambda_arn = var.lambda_arn
-  zone_id =  var.zone_id
+  lambda_arn       = var.lambda_arn
+  zone_id          = var.zone_id
 }
 
 resource aws_iam_user deploy_user {
@@ -43,15 +42,15 @@ resource aws_iam_user deploy_user {
 
 data "template_file" "deploy_policy_tmpl" {
   template = file("${path.module}/deploy_policy.tpl")
-  vars = {
-    bucket = aws_s3_bucket.bucket.bucket
-    distribution_arn = module.cloudfront.arn
+  vars     = {
+    bucket           = aws_s3_bucket.bucket.bucket
+    distribution_arn = module.cloudfront.distribution.arn
   }
 }
 
 resource aws_iam_user_policy deploy_policy {
   policy = data.template_file.deploy_policy_tmpl.rendered
-  user = aws_iam_user.deploy_user.name
+  user   = aws_iam_user.deploy_user.name
 }
 
 resource aws_iam_access_key deploy_key {
