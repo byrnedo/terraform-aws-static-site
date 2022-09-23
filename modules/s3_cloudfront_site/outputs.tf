@@ -1,21 +1,14 @@
-output distribution_arn {
-  value = module.cloudfront.arn
+output cloudfront_distribution {
+  value = module.cloudfront.distribution
 }
 
-output iam_user {
-  value = aws_iam_user.deploy_user.name
+output deploy_user {
+  value = aws_iam_user.deploy_user
 }
 
-output aws_access_key_id {
-  value = aws_iam_access_key.deploy_key.id
+output deploy_key {
+  value = aws_iam_access_key.deploy_key
 }
 
-output aws_secret_access_key {
-  sensitive = true
-  value = aws_iam_access_key.deploy_key.secret
-}
 
-output domain {
-  value = module.cloudfront.domain
-}
 
