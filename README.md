@@ -2,12 +2,14 @@
 
 ![aws](aws.png)
 
+[Install as Terraform Module](https://registry.terraform.io/modules/byrnedo/static-site/aws/latest?tab=readme)
+
 An opinionated module to easily create an S3 hosted static site, served via Cloudfront with TLS and optionally attach lambdas to certain paths.
 
 ```terraform
 module "site" {
   source  = "byrnedo/static-site/aws"
-  version = "0.1.3"
+  version = "0.1.6"
   domain = "www.foo.com"
   aliases = [ "foo.com"]
   region = "eu-west-1"
