@@ -46,3 +46,13 @@ variable "region" {
   description = "The region to host the bucket"
   type        = string
 }
+
+output "cloudfront_distribution" {
+  value = module.aws-static-site.cloudfront_distribution
+}
+output "deploy_user" {
+  value = module.aws-static-site.deploy_user
+}
+output "deploy_key" {
+  value = module.aws-static-site.deploy_key
+}
