@@ -71,10 +71,10 @@ resource "aws_cloudfront_distribution" "dist" {
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 86400
-    max_ttl                = 31536000
+    viewer_protocol_policy     = "redirect-to-https"
+    min_ttl                    = 0
+    default_ttl                = 86400
+    max_ttl                    = 31536000
     response_headers_policy_id = aws_cloudfront_response_headers_policy.cors_policy.id
   }
 
@@ -143,16 +143,26 @@ resource aws_route53_record domain {
 }
 
 resource "aws_cloudfront_response_headers_policy" "cors_policy" {
-  name    = "${var.website_endpoint}-cors-headers-policy"
+  name    = "${replace(var.aliases[0], ".", "-")}-cors-headers-policy"
   comment = "Allow CORS among aliases and main domain"
 
   cors_config {
+    access_control_allow_methods {
+      items = [
+        "HEAD",
+        "GET"
+      ]
+    }
+
+    access_control_allow_headers {
+      items = ["*"]
+    }
 
     access_control_allow_origins {
       items = local.all_domains
     }
 
-    origin_override = true
+    origin_override                  = true
     access_control_allow_credentials = false
   }
 }
