@@ -32,6 +32,3 @@ variable "certificate_arn" {
 }
 variable "zone_id" {}
 
-variable "region" {
-  type = string
-}

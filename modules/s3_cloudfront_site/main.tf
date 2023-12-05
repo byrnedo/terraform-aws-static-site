@@ -1,6 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
   bucket        = var.domain
-  region        = var.region
   acl           = "public-read"
   force_destroy = "false"
 

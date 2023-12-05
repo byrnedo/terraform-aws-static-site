@@ -12,7 +12,6 @@ module "site" {
   version = "0.1.6"
   domain = "www.foo.com"
   aliases = [ "foo.com"]
-  region = "eu-west-1"
   zone_id = "some-zone-id-you-have"
   certificate_arn = "some-certificate-arn-you-have"
 }
